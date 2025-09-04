@@ -8,6 +8,8 @@ on:
 jobs:
   generate-spec:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       # 1. Check out the repository code so the workflow can access it
       - name: Check out repo
