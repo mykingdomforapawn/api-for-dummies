@@ -20,3 +20,12 @@ repos:
         -   id: ruff
             args: [--fix]
         -   id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: update-requirements
+        name: update-requirements
+        entry: bash -c "pip freeze > requirements.txt; git add requirements.txt"
+        language: system
+        pass_filenames: false
+        stages: [ commit ]
