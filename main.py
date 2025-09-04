@@ -19,7 +19,11 @@ class Document(BaseModel):
 
 
 # Create your "in-memory database" and a counter for IDs
-app = FastAPI()
+app = FastAPI(
+    title="Document API for Dummies",
+    version="0.1.0",
+    description="A simple API to learn the basics and experiment with documents.",
+)
 db: List[Document] = []
 id_counter = 0
 

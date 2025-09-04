@@ -1,0 +1,54 @@
+name: Generate and Commit OpenAPI Spec
+
+# Run this workflow on every push to the main branch
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  generate-spec:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. Check out the repository code so the workflow can access it
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      # 2. Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 3. Install your project's dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. Generate the openapi.json file
+      - name: Generate spec
+        run: |
+          # Start the server in the background
+          uvicorn main:app --host 0.0.0.0 --port 8000 &
+          # Give the server a moment to start up
+          sleep 5
+          # Fetch the JSON spec and save it
+          curl http://127.0.0.1:8000/openapi.json --output openapi.json
+
+      # 5. Commit and push the updated spec if it has changed
+      - name: Commit and push if changed
+        run: |
+          # Configure Git for the commit
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Add the generated file to the staging area
+          git add openapi.json
+
+          # Commit the file if there are any changes
+          # The "git diff-index --quiet HEAD" command will exit with an error code (1) if there are changes
+          # The "||" means the commit command only runs if the first command fails (i.e., there are changes)
+          git diff-index --quiet HEAD || git commit -m "docs: Auto-generate OpenAPI spec"
+
+          # Push the changes back to the main branch
+          git push
