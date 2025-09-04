@@ -12,10 +12,11 @@ This project serves as a practical, hands-on sandbox for understanding how APIs 
 
 ## Current Status
 
-The API currently provides basic **CRUD** (Create, Read, Delete) functionality for managing document metadata.
+The API currently provides basic functionality and automation for development.
 
 * **Framework**: Python with **FastAPI**
 * **Data Storage**: In-memory list (data is reset every time the server restarts)
+* **Automation**: Includes a **GitHub Actions** workflow to automatically generate and commit the `openapi.json` spec on every push to `main`.
 * **Endpoints**:
     * `POST /documents/` - Create a new document.
     * `GET /documents/` - Retrieve the list of all documents.
@@ -50,10 +51,11 @@ The API currently provides basic **CRUD** (Create, Read, Delete) functionality f
 
 This project will be extended step-by-step to explore the following core concepts:
 
+* [x] **Automatic Documentation**: Use FastAPI's built-in support for **OpenAPI (Swagger UI)** to generate an API specification.
+* [x] **CI/CD Automation**: Set up a **GitHub Actions** workflow to automatically generate and commit the OpenAPI spec.
 * [ ] **Data Persistency**: Transition from the in-memory list to a persistent database like **SQLite** to save data between server restarts.
 * [ ] **Containerization**: Package the application into a **Docker** container to create a consistent, portable environment for development and deployment.
-* [ ] **Automatic Documentation**: Leverage FastAPI's built-in support for **OpenAPI (Swagger UI)** to generate interactive API documentation automatically.
-* [ ] **More Advanced Features**:
+* [ ] **More Features**:
     * Implement the `UPDATE` (`PUT`/`PATCH`) endpoint.
     * Enhance data validation and error handling.
-    * Add API testing.
+    * Add API testing to the CI/CD workflow.
