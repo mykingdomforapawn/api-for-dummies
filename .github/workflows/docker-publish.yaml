@@ -3,6 +3,13 @@ name: Build and Push Docker Image
 on:
   push:
     branches: [ "main" ]
+    tags:
+      - 'v*.*.*'
+    paths:
+      - 'main.py'
+      - 'requirements.txt'
+      - 'Dockerfile'
+      - '.github/workflows/docker-publish.yml'
 
 jobs:
   build-and-push:
@@ -27,6 +34,13 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/${{ github.repository }}
+          tags: |
+            # Create a tag for the git commit hash (e.g., a1b2c3d)
+            type=sha,format=short
+            # Create the "latest" tag for the main branch
+            type=ref,event=branch,pattern=main
+            # Create a version tag when you push a git tag like "v1.2.3"
+            type=semver,pattern={{version}}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
