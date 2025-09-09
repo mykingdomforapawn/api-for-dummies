@@ -48,6 +48,20 @@ def get_documents():
     return db
 
 
+# --- The PUT endpoint ---
+@app.put("/documents/{document_id}", response_model=Document)
+def update_document(document_id: int, document_update: DocumentCreate):
+    for i, doc in enumerate(db):
+        if doc.id == document_id:
+            # Create a new document object with the updated data
+            updated_doc = Document(id=document_id, **document_update.model_dump())
+            # Replace the old document in the list
+            db[i] = updated_doc
+            return updated_doc
+    # If the loop finishes without finding the document, raise an error
+    raise HTTPException(status_code=404, detail="Document not found")
+
+
 # --- The DELETE endpoint ---
 @app.delete("/documents/{document_id}", status_code=204)
 def delete_document(document_id: int):
