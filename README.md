@@ -52,6 +52,25 @@ The API provides a full CI/CD pipeline for documentation, containerization, and 
 
 ---
 
+## How to Run with Docker
+
+You can also run the pre-built container image from the GitHub Container Registry.
+
+1.  **Pull the latest image:**
+    ```bash
+    docker pull ghcr.io/mykingdomforapawn/api-for-dummies:sha-183691d
+    ```
+
+2.  **Run the container:**
+    This command starts the container and maps your local port 8000 to the container's port 8000.
+    ```bash
+    docker run -d -p 8000:8000 --name my-api-container ghcr.io/your-username/your-repo:latest
+    ```
+3.  **Test it:**
+    The API will be available at `http://localhost:8000/docs`.
+
+---
+
 ## Learning Roadmap
 
 This project will be extended step-by-step to explore the following core concepts:
