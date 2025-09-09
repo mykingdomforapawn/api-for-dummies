@@ -2,6 +2,8 @@
 
 A simple project for learning and experimenting with the fundamental concepts of building a modern API from the ground up.
 
+> **AI Disclaimer:** This project was developed with the assistance of Google's Gemini to guide the learning process, explain concepts, and generate code.
+
 ---
 
 ## Purpose
@@ -12,15 +14,18 @@ This project serves as a practical, hands-on sandbox for understanding how APIs 
 
 ## Current Status
 
-The API currently provides basic functionality and automation for development.
+The API provides a full CI/CD pipeline for documentation, containerization, and basic CRUD functionality.
 
 * **Framework**: Python with **FastAPI**
 * **Data Storage**: In-memory list (data is reset every time the server restarts)
-* **Automation**: Includes a **GitHub Actions** workflow to automatically generate and commit the `openapi.json` spec on every push to `main`.
-* **Endpoints**:
+* **Automation**: Includes GitHub Actions workflows to:
+    * Automatically generate and commit the `openapi.json` spec.
+    * Automatically build and push a Docker image to the GitHub Container Registry (GHCR) on changes to the API.
+* **Endpoints (Full CRUD)**:
     * `POST /documents/` - Create a new document.
-    * `GET /documents/` - Retrieve the list of all documents.
-    * `DELETE /documents/{id}` - Delete a specific document by its ID.
+    * `GET /documents/` - Retrieve all documents.
+    * `PUT /documents/{id}` - Update an existing document.
+    * `DELETE /documents/{id}` - Delete a specific document.
 
 ---
 
@@ -53,9 +58,9 @@ This project will be extended step-by-step to explore the following core concept
 
 * [x] **Automatic Documentation**: Use FastAPI's built-in support for **OpenAPI (Swagger UI)** to generate an API specification.
 * [x] **CI/CD Automation**: Set up a **GitHub Actions** workflow to automatically generate and commit the OpenAPI spec.
+* [x] **Containerization**: Package the application into a **Docker** container and set up a CI/CD workflow to automatically publish it to a registry.
 * [ ] **Data Persistency**: Transition from the in-memory list to a persistent database like **SQLite** to save data between server restarts.
-* [ ] **Containerization**: Package the application into a **Docker** container to create a consistent, portable environment for development and deployment.
-* [ ] **More Features**:
-    * Implement the `UPDATE` (`PUT`/`PATCH`) endpoint.
-    * Enhance data validation and error handling.
-    * Add API testing to the CI/CD workflow.
+* [ ] **Advanced Features & Testing**:
+    * [x] Implement the `UPDATE` (`PUT`) endpoint.
+    * [ ] Enhance data validation and error handling.
+    * [ ] Add API testing to the CI/CD workflow.
