@@ -10,7 +10,7 @@ class DocumentCreate(BaseModel):
     type: str
 
 
-# --- Model for data going OUT (includes the server-generated id) ---
+# --- Model for data going OUT ---
 class Document(BaseModel):
     id: int
     name: str
@@ -18,7 +18,7 @@ class Document(BaseModel):
     type: str
 
 
-# Create your "in-memory database" and a counter for IDs
+# Create "in-memory database" and a counter for IDs
 app = FastAPI(
     title="Document API for Dummies",
     version="0.1.0",
@@ -29,8 +29,8 @@ id_counter = 0
 
 
 # --- The POST endpoint ---
-@app.post("/documents/", response_model=Document)
-def create_document(document: DocumentCreate):  # Expect the input model
+@app.post("/documents/", response_model=Document, status_code=201)
+def create_document(document: DocumentCreate):
     global id_counter
     id_counter += 1
 
@@ -42,10 +42,18 @@ def create_document(document: DocumentCreate):  # Expect the input model
     return new_document
 
 
-# --- The GET endpoint ---
+# --- The GET endpoints ---
 @app.get("/documents/", response_model=List[Document])
 def get_documents():
     return db
+
+
+@app.get("/documents/{document_id}", response_model=Document)
+def get_document_by_id(document_id: int):
+    for doc in db:
+        if doc.id == document_id:
+            return doc
+    raise HTTPException(status_code=404, detail="Document not found")
 
 
 # --- The PUT endpoint ---
