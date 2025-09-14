@@ -28,8 +28,10 @@ googleapis-common-protos==1.63.1
 grpcio==1.64.1
 grpcio-status==1.62.2
 h11==0.16.0
+httpcore==1.0.9
 httplib2==0.22.0
 httptools==0.6.4
+httpx==0.28.1
 ibm-cloud-sdk-core==3.20.3
 ibm-secrets-manager-sdk==2.1.4
 identify==2.6.13
