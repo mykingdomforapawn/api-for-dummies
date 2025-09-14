@@ -20,6 +20,7 @@ The API provides a full CI/CD pipeline for documentation, containerization, and 
 * **Data Storage**: In-memory list (data is reset every time the server restarts)
 * **Automation**: Includes GitHub Actions workflows to:
     * Automatically generate and commit the `openapi.json` spec.
+    * Run automated tests with `pytest` on every push.
     * Automatically build and push a Docker image to the GitHub Container Registry (GHCR) on changes to the API.
 * **Endpoints (Full CRUD)**:
     * `POST /documents/` - Create a new document.
@@ -82,4 +83,4 @@ This project will be extended step-by-step to explore the following core concept
 * [ ] **Advanced Features & Testing**:
     * [x] Implement the `UPDATE` (`PUT`) endpoint.
     * [ ] Enhance data validation and error handling.
-    * [ ] Add API testing to the CI/CD workflow.
+    * [x] Add API testing to the CI/CD workflow.
