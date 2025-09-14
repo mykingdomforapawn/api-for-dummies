@@ -79,8 +79,7 @@ This project will be extended step-by-step to explore the following core concept
 * [x] **Automatic Documentation**: Use FastAPI's built-in support for **OpenAPI (Swagger UI)** to generate an API specification.
 * [x] **CI/CD Automation**: Set up a **GitHub Actions** workflow to automatically generate and commit the OpenAPI spec.
 * [x] **Containerization**: Package the application into a **Docker** container and set up a CI/CD workflow to automatically publish it to a registry.
-* [ ] **Data Persistency**: Transition from the in-memory list to a persistent database like **SQLite** to save data between server restarts.
-* [ ] **Advanced Features & Testing**:
+* [x] **Advanced Features & Testing**:
     * [x] Implement the `UPDATE` (`PUT`) endpoint.
-    * [ ] Enhance data validation and error handling.
+    * [x] Enhance data validation and error handling.
     * [x] Add API testing to the CI/CD workflow.

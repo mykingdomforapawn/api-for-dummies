@@ -1,13 +1,22 @@
+from enum import Enum
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List
+
+
+# --- Enum for allowed document types ---
+class DocumentType(str, Enum):
+    PDF = "PDF"
+    WORD = "Word Doc"
+    SPREADSHEET = "Spreadsheet"
+    PLAIN_TEXT = "Plain Text"
 
 
 # --- Model for data coming IN from the client ---
 class DocumentCreate(BaseModel):
-    name: str
-    owner: str
-    type: str
+    name: str = Field(..., min_length=3, max_length=50, pattern=r"^[a-zA-Z0-9 ]+$")
+    owner: str = Field(..., min_length=3, max_length=50, pattern=r"^[a-zA-Z0-9 ]+$")
+    type: DocumentType
 
 
 # --- Model for data going OUT ---
