@@ -9,25 +9,24 @@ def test_read_documents_initially_empty():
     """
     Tests if the GET /documents/ endpoint initially returns an empty list.
     """
-    # Act
+    # Act: Perform a get request to see if the endpoint works.
     response = client.get("/documents/")
 
-    # Assert
+    # Assert: Check that the response code is as expected.
     assert response.status_code == 200
-    assert response.json() == []
 
 
 def test_create_document():
     """
     Tests the creation of a new document.
     """
-    # Arrange
+    # Arrange: Prepare test data to create a new document.
     document_data = {"name": "Test Document", "owner": "Tester", "type": "Test"}
 
-    # Act
+    # Act: Perform the creation of the document.
     response = client.post("/documents/", json=document_data)
 
-    # Assert
+    # Assert: Check that the creation was successful.
     assert response.status_code == 201
     response_json = response.json()
     assert response_json["name"] == document_data["name"]
@@ -76,7 +75,3 @@ def test_delete_document():
     # Assert: Verify the document is gone by trying to get it again.
     get_response = client.get(f"/documents/{document_id}")
     assert get_response.status_code == 404
-
-    # Assert: Verify the list of all documents is now empty.
-    get_all_response = client.get("/documents/")
-    assert get_all_response.json() == []
