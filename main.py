@@ -10,6 +10,7 @@ class DocumentType(str, Enum):
     WORD = "Word Doc"
     SPREADSHEET = "Spreadsheet"
     PLAIN_TEXT = "Plain Text"
+    BLOB = "Blob"
 
 
 # --- Model for data coming IN from the client ---
