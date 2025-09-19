@@ -42,6 +42,7 @@ The API provides a full CI/CD pipeline for documentation, containerization, and 
 
 3.  **Install dependencies from `requirements.txt`:**
     ```bash
+    pip install --upgrade pip
     pip install -r requirements.txt
     ```
 
