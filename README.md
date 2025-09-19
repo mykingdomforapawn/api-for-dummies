@@ -36,8 +36,8 @@ The API provides a full CI/CD pipeline for documentation, containerization, and 
 
 2.  **Create and activate a Python virtual environment:**
     ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    python -m venv .venv
+    source .venv/bin/activate  # On Windows use `venv\Scripts\activate`
     ```
 
 3.  **Install dependencies from `requirements.txt`:**
